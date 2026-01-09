@@ -1,10 +1,10 @@
-FROM maven:3.8.6-openjdk-8-slim AS build
+FROM maven:3.8.6-eclipse-temurin-8 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:8-jdk-alpine
 RUN apk add --no-cache ttf-dejavu fontconfig
 ENV LD_LIBRARY_PATH=/usr/lib
 ENV TZ="Europe/Istanbul"
