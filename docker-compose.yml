@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    image: enessaid2701/renralski:latest
+    container_name: renralski-app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - TZ=Europe/Istanbul
+    networks:
+      - renralski-network
+    depends_on:
+      - db
+    volumes:
+      - /tmp:/tmp
+
+  db:
+    image: mysql:8.0
+    container_name: renralski-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rentalski
+      MYSQL_USER: rentalski
+      MYSQL_PASSWORD: rentalski
+      TZ: Europe/Istanbul
+    ports:
+      - "3306:3306"
+    volumes:
+      - renralski-db-data:/var/lib/mysql
+      - ./insert_products.sql:/docker-entrypoint-initdb.d/01-products.sql
+      - ./insert_user.sql:/docker-entrypoint-initdb.d/02-user.sql
+    networks:
+      - renralski-network
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+networks:
+  renralski-network:
+    driver: bridge
+
+volumes:
+  renralski-db-data:
+
