@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}" >
+<head>
+  <meta charset="UTF-8">
+  <title>SkyPrint</title>
+
+
+</head>
+<body>
+<div layout:fragment="content">
+
+
+  <div class="input-group mb-3 col-sm-6">
+    <input type="text" class="form-control" id="order-id" placeholder="Sipariş Numarası" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <button class="btn btn-primary" type="button" id="search-btn">Ara</button>
+  </div>
+  <span class="counter pull-right"></span>
+  <div id="summary-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body" id="warning-modal-body">
+          <input type="hidden" value="" id="selected-order">
+          <div>
+            <h5><b>Özet</b></h5>
+
+          </div>
+          <div id="cancel-area">
+
+          </div>
+          <hr>
+          <div id="summary-items" style="padding: 2vh 0;">
+
+          </div>
+
+          <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+            <div class="col"><b>Toplam</b></div>
+            <div class="col text-right" id="total-price"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button  th:if="${showCancel}" type="button" class="btn btn-primary" data-order-id="" id="cancel-order">İptal Et</button>
+          <button type="button" class="btn btn-primary" data-order-id="" id="print-data">Yazdır</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<th:block layout:fragment="script">
+  <script src="/js/orders.js" type="text/javascript"></script>
+</th:block>
+</body>
+</html>

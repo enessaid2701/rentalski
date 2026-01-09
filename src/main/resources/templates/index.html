@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}" >
+<head>
+  <meta charset="UTF-8">
+  <title>SkyPrint</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <table class="table" >
+    <tr th:each="operation : ${operations}">
+      <td> <a th:href="'/operation/'+ ${operation.id}" th:text="${operation.id}"></a></td>
+      <td th:text="${operation.name}"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

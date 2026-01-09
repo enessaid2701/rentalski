@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}" >
+<head>
+  <meta charset="UTF-8">
+  <title>SkyPrint</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="row">
+    <div class="container">
+      VARIABLES
+      <div class="mb-3">
+        <label for="variable-name" class="form-label">Variable Name</label>
+        <input type="text" class="form-control" id="variable-name">
+      </div>
+      <div class="mb-3">
+        <label for="type" class="form-label">Variable Type</label>
+        <select class="form-control" id="type">
+          <option value="text" >TEXT</option>
+          <option value="file" >FILE</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-primary" id="add-variable">Add Variable</button>
+      </div>
+    </div>
+
+    <div class="container">
+      VARIABLES
+      <table class="table" id="variables">
+        <tr>
+          <td>asd asd</td>
+          <td>X</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container">
+      <div class="mb-3">
+        <label for="action-type" class="form-label"><Action></Action> Type</label>
+        <select class="form-control" id="action-type">
+          <option selected value="click">Click</option>
+          <option value="type">Type</option>
+          <option value="go">Go</option>
+          <option value="wait">Wait</option>
+          <option value="upload">Upload</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" id="add-action">Add Action</button>
+    </div>
+
+    <div class="container" id="step-area">
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

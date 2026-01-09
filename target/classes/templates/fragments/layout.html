@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+  <script src="/js/jquery-3.6.0.min.js" ></script>
+  <script src="/js/bootstrap.js" ></script>
+  <script src="/js/input-mask.js" ></script>
+  <script src="/js/action.js" ></script>
+  <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/css/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Siparisler <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Raporlar</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" layout:fragment="content">
+    <!--  CONTENT-->
+  </div>
+
+  <th:block layout:fragment="script">
+
+  </th:block>
+</body>
+</html>

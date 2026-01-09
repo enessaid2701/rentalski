@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}" >
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="col-sm-6" style="border: 1px silver solid; padding: 4px;">
+        <form>
+          <select class="form-select" id="printer-code">
+            <option value="1" th:selected="(${printerId == 1 || printerId == null} )" >Yazıcı 1</option>
+            <option value="2" th:selected="(${printerId == 2})">Yazıcı 2</option>
+          </select>
+          <div class="form-group input-group row">
+            <label for="phone-number" class="col-sm-3 col-form-label">Telefon Numarası</label>
+            <input type="text" id="phone-number" class="form-control" data-inputmask="'alias': 'phonebe'" placeholder="Telefon Numarası" aria-label="phone-number">
+            <a href="#" id="search-customer" class="btn btn-primary btn-link" >Müşteri Ara</a>
+          </div>
+
+          <div class="form-group input-group row ">
+            <label for="full-name" class="col-sm-3 col-form-label">Ad Soyad</label>
+            <input type="text" id="full-name" class="form-control col-sm-3" placeholder="Ad Soyad">
+          </div>
+
+          <div class="form-group row">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary active btn-lg col-sm-5">
+                <input type="radio" class="order-type" name="order-type"  checked value="full"> Normal
+              </label>
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="order-type" name="order-type"  checked value="student"> Öğrenci
+              </label>
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="order-type" name="order-type" value="sportman" > Sporcu
+              </label>
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="order-type" name="order-type" value="guest" > Misafir
+              </label>
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="order-type" name="order-type" value="extra" > Harici Indirim
+              </label>
+            </div>
+          </div>
+
+<!--          <div class="form-group row">-->
+<!--            <label for="gender" class="col-sm-3 col-form-label">Cinsiyet</label>-->
+<!--            <div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+<!--              <label class="btn btn-primary active btn-lg">-->
+<!--                <input type="radio" class="gender" name="gender" checked value="male" > Erkek-->
+<!--              </label>-->
+<!--              <label class="btn btn-primary btn-lg">-->
+<!--                <input type="radio" class="gender" name="gender"   value="female"> Kadın-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="form-group row product-row" th:each="product : ${products}">
+            <label class="col-sm-3 col-form-label" th:text="${product.displayName}"></label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="select-product" th:name="${product.code}" value="yes"
+                       th:data-full-price="${product.prices.get('FULL').price}"
+                       th:data-student-price="${product.prices.get('STUDENT').price}"
+                       th:data-guest-price="${product.prices.get('GUEST').price}"
+                       th:data-sportman-price="${product.prices.get('SPORTMAN').price}"
+                       th:data-name="${product.displayName}"
+                > Evet
+              </label>
+              <label class="btn btn-primary btn-lg">
+                <input type="radio" class="select-product" th:name="${product.code}" checked value="no"
+                       th:data-full-price="${product.prices.get('FULL').price}"
+                       th:data-student-price="${product.prices.get('STUDENT').price}"
+                       th:data-guest-price="${product.prices.get('GUEST').price}"
+                       th:data-sportman-price="${product.prices.get('SPORTMAN').price}"> Hayır
+              </label>
+            </div>
+
+          </div>
+
+          <!--==========================================================================-->
+          <div class="row customer-info-hide"  id="sled-time-area">
+            <div class="col-sm-6">
+              <span>Kızak Saatini Güncelleyin</span>
+              <div class="input-group">
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary btn-number btn-lg" disabled="disabled" data-type="minus" data-field="quant[1]">
+                        <span> - </span>
+                    </button>
+                </span>
+                <input type="text" name="quant[1]" class="form-control input-number" id="sled-hour" value="1" min="0.5" max="10">
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary btn-number btn-lg" data-type="plus" data-field="quant[1]">
+                        <span> + </span>
+                    </button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row customer-info-hide"  id="iceskate-time-area">
+            <div class="col-sm-6">
+              <span>Buz Pateni Saatini Güncelleyin</span>
+              <div class="input-group">
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary btn-number btn-lg" disabled="disabled" data-type="minus" data-field="quant[2]">
+                        <span> - </span>
+                    </button>
+                </span>
+                <input type="text" name="quant[2]" class="form-control input-number" id="sket-hour" value="1" min="0.5" max="10">
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary btn-number btn-lg" data-type="plus" data-field="quant[2]">
+                        <span> + </span>
+                    </button>
+                </span>
+              </div>
+            </div>
+          </div>
+<!--          <div class="form-group input-group row customer-info customer-info-hide">-->
+<!--            <label for="phone-number" class="col-sm-3 col-form-label">Yaş</label>-->
+<!--            <input type="text" id="age" class="form-control numeric col-sm-3" placeholder="Yaş">-->
+<!--          </div>-->
+
+<!--          <div class="form-group input-group row customer-info customer-info-hide">-->
+<!--            <label for="weight" class="col-sm-3 col-form-label">Kilo</label>-->
+<!--            <input type="text" id="weight" class="form-control numeric col-sm-3" placeholder="Kilo">-->
+<!--          </div>-->
+
+<!--          <div class="form-group input-group row customer-info customer-info-hide">-->
+<!--            <label for="height" class="col-sm-3 col-form-label">Boy</label>-->
+<!--            <input type="text" id="height" class="form-control numeric col-sm-3" placeholder="Boy">-->
+<!--          </div>-->
+
+<!--          <div class="form-group input-group row customer-info customer-info-hide">-->
+<!--            <label for="shoe-size" class="col-sm-3 col-form-label">Ayakkabı Numarası</label>-->
+<!--            <input type="text" id="shoe-size" class="form-control decimal col-sm-3" placeholder="Ayakkabı Numarası">-->
+<!--          </div>-->
+
+        </form>
+      </div>
+      <div class="col-md-4 summary">
+        <div>
+          <h5><b>Özet</b></h5>
+        </div>
+        <hr>
+        <div id="items" style="padding: 2vh 0;"></div>
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+          <div class="col"><b>Toplam</b></div>
+          <div class="col text-right" id="total-price"></div>
+        </div> <button class ="btn btn-primary btn-lg" id="save">Kaydet</button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="warning-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Uyarı</h4>
+          </div>
+          <div class="modal-body" id="warning-modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="select-discount-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">İndirim Seç</h4>
+          </div>
+          <div class="modal-body" id="">
+            <div class="form-group row">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary active btn-lg col-sm-5">
+                  <input type="radio" class="discount-rate" name="discount-rate"  checked value="10"> Yüzde 10
+                </label>
+                <label class="btn btn-primary btn-lg">
+                  <input type="radio" class="discount-rate" name="discount-rate"  checked value="15"> Yüzde 15
+                </label>
+                <label class="btn btn-primary btn-lg">
+                  <input type="radio" class="discount-rate" name="discount-rate" value="20" > Yüzde 20
+                </label>
+                <label class="btn btn-primary btn-lg">
+                  <input type="radio" class="discount-rate" name="discount-rate" value="25" > Yüzde 25
+                </label>
+              </div>
+            </div>
+
+            <h1> TOPLAM TUTAR <span id="total-price-in-modal"></span></h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="save-with-discount">Kaydet</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Modal END-->
+    <div class="modal" tabindex="-1" role="dialog" id="customer-select-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Müşteri Seç</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>İsim</th>
+                  <th>Seç</th>
+                </tr>
+              </thead>
+              <tbody id="customer-select-table">
+
+              </tbody>
+
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
