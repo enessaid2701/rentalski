@@ -92,9 +92,12 @@ public class OrderService
 
         double total = 0d;
         for (OrderEntry entry : entries) {
-            total += entry.getPrice();
+            if (entry.getPrice() != null) {
+                total += entry.getPrice();
+            }
         }
         order.setTotalPrice(total);
+        order.setPriceType(type);  // PriceType'ı order'a set et
         order = orderRepository.save(order);
         orderEntryRepository.saveAll(entries);
 

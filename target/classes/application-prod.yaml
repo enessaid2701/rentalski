@@ -2,7 +2,26 @@ spring:
     profiles:
         active: prod
     datasource:
-        url: jdbc:mysql://db:3306/rentautomation?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://178.157.15.185/:3306/rentalski?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
         username: root
-        password: root
+        password: 'a8230385!A'
         driver-class-name: com.mysql.cj.jdbc.Driver
+        initialization-mode: always
+    jpa:
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            ddl-auto: update
+        properties:
+            hibernate:
+                jdbc:
+                    time_zone: GMT+3
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                enable_lazy_load_no_trans: true
+    http:
+        encoding:
+            charset: cp857
+            enabled: true
+            force: true
+server:
+    port: 80

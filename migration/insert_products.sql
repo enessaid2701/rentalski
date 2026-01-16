@@ -2,17 +2,17 @@
 -- Her ürün için code, displayName ve order_number değerleri
 
 INSERT INTO `rentalski`.`products` (`code`, `displayName`, `order_number`, `created_at`, `updated_at`) VALUES
-('KAYAK_TAKIMI', 'KAYAK TAKIMI SKI EQUIPMENT(SKIS, BOOTS, POLES)', 1, NOW(), NOW()),
-('SNOWBOARD_TAKIMI', 'SNOWBOARD TAKIMI SKI EQUIPMENT(BOARD, BOOTS)', 2, NOW(), NOW()),
-('KAYAK_ELBISESI', 'KAYAK ELBİSESİ SKI SUIT (JACKET, PANTS)', 3, NOW(), NOW()),
+('KAYAK_TAKIMI', 'KAYAK TAKIMI', 1, NOW(), NOW()),
+('SNOWBOARD_TAKIMI', 'SNOWBOARD TAKIMI', 2, NOW(), NOW()),
+('KAYAK_ELBISESI', 'KAYAK ELBİSESİ', 3, NOW(), NOW()),
 ('KASK', 'KASK SKI HELMET', 4, NOW(), NOW()),
-('GOZLUK', 'GÖZLÜK SKI GOGGLES', 5, NOW(), NOW()),
-('BATON', 'BATON SKI POLES', 6, NOW(), NOW()),
-('PANTOLON', 'PANTOLON SKI PANTS', 7, NOW(), NOW()),
-('MONT', 'MONT SKI JACKET', 8, NOW(), NOW()),
-('KIZAK', 'KIZAK (BANT DAHİL) SLED (INCLUDE MOVING WALKWAY)', 9, NOW(), NOW()),
-('GUNLUK_DOLAP', 'GÜNLÜK DOLAP CLOSET FOR DAILY RENT', 10, NOW(), NOW()),
-('SEZONLUK_DOLAP', 'SEZONLUK DOLAP CLOSET FOR SEASON RENT', 11, NOW(), NOW());
+('GOZLUK', 'GÖZLÜK', 5, NOW(), NOW()),
+('BATON', 'BATON', 6, NOW(), NOW()),
+('PANTOLON', 'PANTOLON', 7, NOW(), NOW()),
+('MONT', 'MONT', 8, NOW(), NOW()),
+('KIZAK', 'KIZAK', 9, NOW(), NOW()),
+('GUNLUK_DOLAP', 'GÜNLÜK DOLAP', 10, NOW(), NOW()),
+('SEZONLUK_DOLAP', 'SEZONLUK DOLAP', 11, NOW(), NOW());
 
 -- Fiyatları prices tablosuna ekleme
 -- Her ürün için 4 farklı price type (FULL, STUDENT, GUEST, SPORTMAN) ekleniyor
